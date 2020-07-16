@@ -13,8 +13,10 @@
 
 int main ()
 {
-    int op, op_area , cont, i, c1, c2, c3, aux = 0,  num, n; // Variavel para guardar as opçoes op, cont contador = i e aux = j auxiliar, c1 = contador1
+    int op, op_area , cont, i, c1, j, c2, c3, aux = 0,  num, hora, minuto, ano, n, mdc; // Variavel para guardar as opçoes op, cont contador = i e aux = j auxiliar, c1 = contador1
     float num_media, lado, areaquadrado, areatriangulo, arearetangulo, base, altura, resultado;
+    float n1,n2;
+    char sinal;
 
     do{
 
@@ -280,6 +282,7 @@ int main ()
 
         }
 
+        // Calcula a média dos números
         else if(op == 6){
 
             resultado = 0;
@@ -300,14 +303,229 @@ int main ()
 
                 }
 
+
             }while(num_media != 0);
+
+            system(" cls || clear ");
             
             if(c1 != 0){
                 printf("\n\nA media aritimetica dos numeros digitados e: %0.2f\n\n", resultado / c1);
+
+                printf("Pressione \"Enter\" para retornar ao Menu.\n\n");
+
                 getchar();
             }
 
+        }
 
+        // Calcula o MDC
+        else if (op == 7) {
+
+            printf("Digite um numero:  ");
+            scanf("%i", &num);
+
+            printf("Digite outro numero:  ");
+            scanf("%i", &n);
+
+            getchar();
+
+            system(" cls || clear ");
+
+            aux = 0; 
+            mdc = 1;
+
+            // Este for faz a fatoração
+            for (c1 = 1; num > 1 || n > 1; c1++) {
+
+            // Abaixo o código verifca e imprime um numero primo
+
+            j = 0;
+
+            // O for verifica se o numero temresto igual a 0
+            for ( i = 1;  i <= c1; i++ ) { 
+
+                if ( c1 % i == 0 ) {
+
+                    j++;
+
+                }
+
+            }
+
+            if ( j == 2 ) {
+
+                aux++;
+
+                if ( num % c1 == 0 && n % c1 == 0) {
+
+                    printf("%i, %i | %i\n", num, n, c1);
+
+                    mdc *= c1;
+
+                    num /= c1;
+                    n /= c1;
+
+                    c1 = 1; // faz voltar os numeros
+
+                }
+                else if ( num % c1 == 0 && !  (n % c1 == 0 )) {
+
+                    printf("%i, %i | %i\n", num, n, c1);
+
+                    num /= c1;
+
+                    c1 = 1; // faz voltar os numeros
+
+                }
+                else if ( n % c1 == 0 && ! (num % c1 == 0 )) {
+
+                    printf("%i, %i | %i\n", num, n, c1);
+
+                    n /= c1;
+
+                    c1 = 1;
+
+                }
+                
+            }
+
+
+            }
+
+            printf("%i, %i |   \n", num, n);
+
+            printf("\nO MDC dos numeros digitados e: %i\n\n", mdc);
+
+            printf("Pressione \"Enter\" para retornar ao Menu!\n");
+
+            getchar();
+
+            
+        }
+
+        else if (op == 8){
+            
+            resultado = 0;
+            j = 0;
+
+            do{
+                printf("\n\nDigite um dos simbolos para efetuar a operacao: \n\n");
+                printf("Soma [+]\n");
+                printf("Subtracao [-]\n");
+                printf("Divisao [/]\n");
+                printf("Multiplicacao [*]\n");
+                printf("Sair [E]\n\n");
+                scanf("%c", &sinal);
+                getchar();
+
+                system("cls||clear");
+
+                switch(sinal){
+                    case '+': 
+                        printf("\nDigite um valor: ");
+                        scanf("%f", &n1); // 1
+                        getchar();
+
+                        printf("\nDigite outro valor: ");
+                        scanf("%f", &n2);
+                        getchar(); // 2 // resultado = 5
+
+                        if(j == 0){
+
+                            resultado += n1 + n2;
+                            printf("\n\nA soma de %0.2f e %0.2f e: %0.2f\n", n1, n2, resultado);
+
+                        }else{
+
+                            printf("\n\nA soma de %0.2f e %0.2f e: %0.2f\n", n1 + n2,resultado, resultado + n1 + n2);
+                            resultado += n1 + n2;
+
+                        }
+                    break;
+
+                    case '-':
+
+                        printf("\nDigite um valor: ");
+                        scanf("%f", &n1);
+                        getchar();
+
+                        printf("\nDigite outro valor: ");
+                        scanf("%f", &n2);
+                        getchar();
+
+                        if(j == 0){
+                            
+                            resultado = n1-n2;
+                            printf("\n\nA subtracao de %0.2f e %0.2f e: %0.2f\n", n1,n2,resultado);
+
+                        }else{
+
+                            printf("\n\nA subtracao de %0.2f e %0.2f e: %0.2f\n", n1 - n2, resultado, resultado - (n1 - n2));
+                            resultado = resultado - (n1 - n2);
+
+                        }
+
+                    break;
+
+                    case '/':
+
+                        printf("\nDigite um valor: ");
+                        scanf("%f", &n1);
+                        getchar();
+
+                        printf("\nDigite outro valor: ");
+                        scanf("%f", &n2);
+                        getchar();
+
+                        if (j == 0){
+                            
+                            resultado = n1 / n2;
+                            printf("\n\nA divisao de %0.2f com %0.2f e: %0.2f\n", n1, n2,resultado);
+                            
+                        }else{
+
+                            printf("\n\nA divisao de %0.2f por %0.2f e: %0.2f\n", resultado,n1/n2, resultado / (n1 /n2));
+                            resultado = resultado / (n1 / n2);
+
+                        }
+
+                    break;
+
+                    case '*':
+
+                        printf("\nDigite um valor: ");
+                        scanf("%f", &n1);
+                        getchar();
+
+                        printf("\nDigite outro valor: ");
+                        scanf("%f", &n2);
+                        getchar();
+
+                        if ( j == 0){
+
+                            resultado = n1*n2;
+                            printf("\n\nA multiplicacao de %0.2f por %0.2f e: %0.2f", n1, n2, resultado);
+
+                        }else{
+
+                            printf("\n\nA multiplicacao de %0.2f por %0.2f e: %0.2f", resultado, n1 * n2, resultado * ( n1 * n2));
+                            resultado = resultado * ( n1 * n2);
+
+                        }
+
+                    break;
+
+                }
+
+                if(sinal == 'e'){
+
+                    sinal = 'E';
+
+                }
+
+                j++;
+
+            }while (sinal != 'E');
         }
 
     }while (op != 12);
